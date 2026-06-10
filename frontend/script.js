@@ -22,8 +22,48 @@ async function listarPessoas() {
     let html = "";
 
     pessoas.forEach(p => {
-        html += `<p>${p.nome} - ${p.idade}</p>`;
+        html += `
+        <p>
+            id: ${p.id} - 
+            ${p.nome} - 
+            ${p.idade}
+
+            <button onclick="editarPessoa(${p.id})">
+                Editar
+            </button>
+
+            <button onclick="excluirPessoa(${p.id})">
+                Excluir
+            </button>
+        </p>
+        `;
     });
 
     document.getElementById("resultado").innerHTML = html;
+}
+
+async function excluirPessoa(id) {
+    await fetch(`${API}/${id}`, {
+        method: "DELETE"
+    });
+
+    listarPessoas();
+}
+
+async function editarPessoa(id){
+    const novoNome = prompt('Novo nome: ');
+    const novaIdade = prompt('Nova idade: ');
+
+    await fetch(`${API}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nome: novoNome,
+            idade: novaIdade
+        })
+    })
+
+    listarPessoas();
 }

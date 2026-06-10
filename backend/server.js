@@ -52,9 +52,55 @@ app.post("/pessoas", (req, res) => {
     );
 });
 
+//deletar
+app.delete("/pessoas/:id", (req, res) => {
+    const id = req.params.id;
+
+    db.run(
+        "DELETE FROM pessoas WHERE  id = ?",
+        [id],
+        function (err) {
+            if (err) {
+                console.log('Erro no DELETE: ', err.message);
+                return res.status(500).json({ erro: err.message });
+            }
+
+            res.json({
+                mensagem: 'Pessoa removida com sucesso!'
+            });
+        }
+    )
+});
+
+//editar / put
+app.put("/pessoas/:id", (req, res) => {
+    const id = req.params.id;
+    const { nome, idade } = req.body;
+
+    db.run(
+        "UPDATE pessoas SET nome = ?, idade = ? WHERE id = ?",
+        [nome, idade, id],
+        function (err) {
+            if (err) {
+                console.log("Erro no UPDATE:", err.message);
+                //console.log(`Erro no UPDATE: ${err.message}`);
+                return res.status(500).json( { erro: err.message } );
+            }
+
+            res.json({
+                mensagem: "Pessoa atualizada com sucesso!"
+            })
+        }
+    );
+});
+
+
+
 app.listen(3000, () => {
     console.log("rodando na porta 3000");
 });
 
 //saber caminho do bancoooo
 console.log("DB PATH:", path.join(__dirname, "banco.db"));
+
+
