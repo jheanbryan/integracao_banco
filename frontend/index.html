@@ -1,9 +1,56 @@
+<style>
+    *{
+       font-family: Arial, Helvetica, sans-serif; 
+    }
+    input{
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .div-btns{
+        margin-top: 10px;
+    }
+    button{
+        border-radius: 5px;
+        border: 1px solid black;
+        padding: 5px;
+        cursor: pointer;
+    }
+    .btn-salvar{
+        color: #fff;
+        background-color: darkgreen;
+    }
+    .btn-listar{
+        color: #fff;
+        background-color: rgba(0, 0, 255, 0.522);
+    }
+    p{
+        background-color: #dcdcdc;
+        padding: 5px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .btn-editar{
+        color: #fff;
+        background-color: darkorange;
+    }
+    .btn-excluir{
+        color: #fff;
+        background-color: crimson;
+    }
+</style>
+
 <input id="nome" placeholder="Nome">
 <input id="idade" placeholder="Idade">
 
-<button onclick="salvarPessoa()">Salvar</button>
-<button onclick="listarPessoas()">Listar</button>
+<br>
+<div class="div-btns">
+    <button onclick="salvarPessoa()" class="btn-salvar">Salvar</button>
+
+    <button onclick="listarPessoas()" class="btn-listar">Listar</button>
+</div>
+
 
 <div id="resultado"></div>
-
 <script src="script.js"></script>

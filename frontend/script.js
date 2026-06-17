@@ -24,15 +24,15 @@ async function listarPessoas() {
     pessoas.forEach(p => {
         html += `
         <p>
-            id: ${p.id} - 
-            ${p.nome} - 
+            id: ${p.id} 
+            ${p.nome}  
             ${p.idade}
 
-            <button onclick="editarPessoa(${p.id})">
+            <button onclick="editarPessoa(${p.id})" class="btn-editar">
                 Editar
             </button>
 
-            <button onclick="excluirPessoa(${p.id})">
+            <button onclick="excluirPessoa(${p.id})" class="btn-excluir">
                 Excluir
             </button>
         </p>
@@ -64,6 +64,5 @@ async function editarPessoa(id){
             idade: novaIdade
         })
     })
-
     listarPessoas();
 }
